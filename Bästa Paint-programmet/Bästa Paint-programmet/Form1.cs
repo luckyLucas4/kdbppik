@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 
-namespace paint
+namespace Bästa_Paint_programmet
 {
     public partial class Form1 : Form
     {
         bool draw = false;
+
+        DrawingPanel panel;
 
         int pX = -1;
         int pY = -1;
@@ -24,8 +26,13 @@ namespace paint
         {
             InitializeComponent();
 
-                drawing = new Bitmap(panel1.Width, panel1.Height, panel1.CreateGraphics());
-                Graphics.FromImage(drawing).Clear(Color.White);
+            panel = new DrawingPanel("circle", panel1.Location, panel1.Size);
+            Controls.Add(panel);
+            panel1.Visible = false;
+            panel1.Enabled = false;
+
+            drawing = new Bitmap(panel1.Width, panel1.Height, panel1.CreateGraphics());
+            Graphics.FromImage(drawing).Clear(Color.White);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)

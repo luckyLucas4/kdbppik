@@ -1,4 +1,4 @@
-﻿namespace paint
+﻿namespace Bästa_Paint_programmet
 {
     partial class Form1
     {

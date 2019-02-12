@@ -22,7 +22,7 @@ namespace Bästa_Paint_programmet
         public DrawingPanel(string shape, Point position)
         {
             currentShape = shape;
-            BackColor = Color.Azure;
+            BackColor = Color.White;
             this.Location = position;
             this.Size = new Size(200, 200);
             DoubleBuffered = true;
@@ -32,7 +32,7 @@ namespace Bästa_Paint_programmet
         public DrawingPanel(string shape, Point position, Size size)
         {
             currentShape = shape;
-            BackColor = Color.Azure;
+            BackColor = Color.White;
             this.Location = position;
             this.Size = size;
             DoubleBuffered = true;
@@ -122,21 +122,13 @@ namespace Bästa_Paint_programmet
 
         }
 
-        private void DrawRectangle(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
             if (rectangles.Count > 0)
             {
                 e.Graphics.DrawRectangles(Pens.Black, rectangles.ToArray());
             }
 
-            if (drawing)
-            {
-                e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
-            }
-        }
-
-        private void DrawCircle(PaintEventArgs e)
-        {
             if (ellipses.Count > 0)
             {
                 foreach (Rectangle r in ellipses)
@@ -147,10 +139,18 @@ namespace Bästa_Paint_programmet
 
             if (drawing)
             {
-                e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
+                switch (currentShape)
+                {
+                    case "rectangle":
+                        e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
+                        break;
+
+                    case "circle":
+                        e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
+                        break;
+
+                }  
             }
         }
-
-        
     }
 }
