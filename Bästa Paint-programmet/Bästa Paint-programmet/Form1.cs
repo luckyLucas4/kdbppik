@@ -72,10 +72,18 @@ namespace Bästa_Paint_programmet
         {
             e.Graphics.DrawImageUnscaled(drawing, new Point(0, 0));
         }
-
+      
         private void Cirkel_CheckedChanged(object sender, EventArgs e)
         {
-
+            ToolCheck();
         }
+        public void ToolCheck()
+        {
+            if (rBtnPenna.Checked == true)
+            {
+                
+            }
+        }
+
     }
 }
