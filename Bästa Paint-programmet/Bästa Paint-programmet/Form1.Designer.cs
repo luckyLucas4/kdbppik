@@ -86,6 +86,7 @@
             this.rBtnPenna.TabIndex = 0;
             this.rBtnPenna.Text = "Penna";
             this.rBtnPenna.UseVisualStyleBackColor = true;
+            this.rBtnPenna.CheckedChanged += new System.EventHandler(this.rBtnPenna_CheckedChanged);
             // 
             // rBtnLinje
             // 
@@ -96,6 +97,7 @@
             this.rBtnLinje.TabIndex = 1;
             this.rBtnLinje.Text = "Linje";
             this.rBtnLinje.UseVisualStyleBackColor = true;
+            this.rBtnLinje.CheckedChanged += new System.EventHandler(this.rBtnLinje_CheckedChanged);
             // 
             // rBtnRektangel
             // 
@@ -106,6 +108,7 @@
             this.rBtnRektangel.TabIndex = 2;
             this.rBtnRektangel.Text = "Rektangel";
             this.rBtnRektangel.UseVisualStyleBackColor = true;
+            this.rBtnRektangel.CheckedChanged += new System.EventHandler(this.rBtnRektangel_CheckedChanged);
             // 
             // rBtnCirkel
             // 
