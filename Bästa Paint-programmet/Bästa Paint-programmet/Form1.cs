@@ -20,13 +20,13 @@ namespace Bästa_Paint_programmet
         int pX = -1;
         int pY = -1;
 
-        Bitmap drawing;
+        public Bitmap drawing;
 
         public Form1()
         {
             InitializeComponent();
 
-            panel = new DrawingPanel("circle", panel1.Location, panel1.Size);
+            panel = new DrawingPanel("pen", panel1.Location, panel1.Size);
             Controls.Add(panel);
             panel1.Visible = false;
             panel1.Enabled = false;

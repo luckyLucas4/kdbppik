@@ -11,8 +11,8 @@ namespace Bästa_Paint_programmet
 {
     class DrawingPen
     {
-        Point position;
-        bool draw;
+        public Point position;
+        public bool draw;
 
         public DrawingPen()
         {

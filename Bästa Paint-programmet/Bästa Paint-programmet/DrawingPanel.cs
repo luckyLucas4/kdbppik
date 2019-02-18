@@ -14,21 +14,12 @@ namespace Bästa_Paint_programmet
         private Point startPos;
         private Point currentPos;
         private bool drawing;
+        public Bitmap bitmap;
         private List<Rectangle> rectangles = new List<Rectangle>();
         private List<Rectangle> ellipses = new List<Rectangle>();
         private DrawingPen pen = new DrawingPen();
 
         public string currentShape;
-
-        public DrawingPanel(string shape, Point position)
-        {
-            currentShape = shape;
-            BackColor = Color.White;
-            this.Location = position;
-            this.Size = new Size(200, 200);
-            DoubleBuffered = true;
-            SetStyle(ControlStyles.ResizeRedraw, true);
-        }
 
         public DrawingPanel(string shape, Point position, Size size)
         {
@@ -38,6 +29,8 @@ namespace Bästa_Paint_programmet
             this.Size = size;
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+            bitmap = new Bitmap(this.Width, this.Height, this.CreateGraphics());
+            Graphics.FromImage(bitmap).Clear(Color.White);
         }
 
         protected Rectangle GetRectangle()
@@ -57,7 +50,10 @@ namespace Bästa_Paint_programmet
 
             if(currentShape == "pen")
             {
+                pen.draw = true;
 
+                pen.position.X = e.X;
+                pen.position.Y = e.Y;
             }
         }
 
@@ -67,6 +63,26 @@ namespace Bästa_Paint_programmet
             if (drawing)
             {
                 this.Invalidate();
+            }
+
+            if(currentShape == "pen")
+            {
+                if (pen.draw)
+                {
+                    Graphics graphics = Graphics.FromImage(bitmap);
+
+                    Pen paintingPen = new Pen(Color.Black, 10);
+
+                    paintingPen.EndCap = LineCap.Round;
+                    paintingPen.StartCap = LineCap.Round;
+
+                    graphics.DrawLine(paintingPen, pen.position.X , pen.position.Y, e.X, e.Y);
+
+                    this.CreateGraphics().DrawImageUnscaled(bitmap, new Point(0, 0));
+                }
+
+                pen.position.X = e.X;
+                pen.position.Y = e.Y;
             }
         }
 
@@ -83,6 +99,7 @@ namespace Bästa_Paint_programmet
                     break;
 
                 case "pen":
+                    pen.draw = false;
                     break;
 
 
@@ -156,6 +173,11 @@ namespace Bästa_Paint_programmet
                         break;
 
                 }  
+            }
+
+            if(currentShape == "pen")
+            {
+                e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
             }
         }
     }
