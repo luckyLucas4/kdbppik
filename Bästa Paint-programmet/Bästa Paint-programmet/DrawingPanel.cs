@@ -78,7 +78,7 @@ namespace Bästa_Paint_programmet
 
                     graphics.DrawLine(paintingPen, pen.position.X , pen.position.Y, e.X, e.Y);
 
-                    this.CreateGraphics().DrawImageUnscaled(bitmap, new Point(0, 0));
+                    //this.CreateGraphics().DrawImageUnscaled(bitmap, new Point(0, 0));
                 }
 
                 pen.position.X = e.X;
@@ -101,9 +101,12 @@ namespace Bästa_Paint_programmet
                 case "pen":
                     pen.draw = false;
                     break;
-
-
             }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            drawing = false;
         }
 
         private void AddRectangle(MouseEventArgs e)
@@ -140,13 +143,11 @@ namespace Bästa_Paint_programmet
             }
         }
 
-        private void AddPen(MouseEventArgs e)
-        {
-
-        }
-
         protected override void OnPaint(PaintEventArgs e)
         {
+
+            e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
+
             if (rectangles.Count > 0)
             {
                 e.Graphics.DrawRectangles(Pens.Black, rectangles.ToArray());
@@ -173,12 +174,7 @@ namespace Bästa_Paint_programmet
                         break;
 
                 }  
-            }
-
-            if(currentShape == "pen")
-            {
-                e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
-            }
+            }   
         }
     }
 }
