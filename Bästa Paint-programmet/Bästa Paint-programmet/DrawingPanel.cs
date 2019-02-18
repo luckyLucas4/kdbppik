@@ -16,6 +16,7 @@ namespace Bästa_Paint_programmet
         private bool drawing;
         private List<Rectangle> rectangles = new List<Rectangle>();
         private List<Rectangle> ellipses = new List<Rectangle>();
+        private DrawingPen pen = new DrawingPen();
 
         public string currentShape;
 
@@ -53,6 +54,11 @@ namespace Bästa_Paint_programmet
         {
             currentPos = startPos = e.Location;
             drawing = true;
+
+            if(currentShape == "pen")
+            {
+
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

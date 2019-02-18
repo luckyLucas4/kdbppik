@@ -31,7 +31,7 @@ namespace Bästa_Paint_programmet
             panel1.Visible = false;
             panel1.Enabled = false;
 
-            drawing = new Bitmap(panel1.Width, panel1.Height, panel1.CreateGraphics());
+            drawing = new Bitmap(panel.Width, panel.Height, panel.CreateGraphics());
             Graphics.FromImage(drawing).Clear(Color.White);
         }
 
