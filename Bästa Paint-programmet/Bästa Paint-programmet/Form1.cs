@@ -73,17 +73,44 @@ namespace Bästa_Paint_programmet
             e.Graphics.DrawImageUnscaled(drawing, new Point(0, 0));
         }
       
+      
+        public void ToolCheck()
+        {
+            if(rBtnPenna.Checked == true)
+            {
+                panel.currentShape = "pen";
+            }
+            if(rBtnLinje.Checked == true)
+            {
+                panel.currentShape = "line";
+            }
+            if (rBtnRektangel.Checked == true)
+            {
+                panel.currentShape = "rectangle";
+            }
+            if (rBtnCirkel.Checked == true)
+            {
+                panel.currentShape = "circle";
+            }
+        }
         private void Cirkel_CheckedChanged(object sender, EventArgs e)
         {
             ToolCheck();
         }
-        public void ToolCheck()
+
+        private void rBtnRektangel_CheckedChanged(object sender, EventArgs e)
         {
-            if (rBtnPenna.Checked == true)
-            {
-                
-            }
+            ToolCheck();
         }
 
+        private void rBtnLinje_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolCheck();
+        }
+
+        private void rBtnPenna_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolCheck();
+        }
     }
 }
