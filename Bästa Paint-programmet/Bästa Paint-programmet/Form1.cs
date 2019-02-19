@@ -26,7 +26,7 @@ namespace Bästa_Paint_programmet
         {
             InitializeComponent();
 
-            panel = new DrawingPanel("pen", panel1.Location, panel1.Size);
+            panel = new DrawingPanel(new Pen(Color.Green, 10), panel1.Location, panel1.Size);
             Controls.Add(panel);
             panel1.Visible = false;
             panel1.Enabled = false;
@@ -76,22 +76,22 @@ namespace Bästa_Paint_programmet
       
         public void ToolCheck()
         {
-            if(rBtnPenna.Checked == true)
-            {
-                panel.currentShape = "pen";
-            }
-            if(rBtnLinje.Checked == true)
-            {
-                panel.currentShape = "line";
-            }
-            if (rBtnRektangel.Checked == true)
-            {
-                panel.currentShape = "rectangle";
-            }
-            if (rBtnCirkel.Checked == true)
-            {
-                panel.currentShape = "circle";
-            }
+            //if(rBtnPenna.Checked == true)
+            //{
+            //    panel.currentShape = "pen";
+            //}
+            //if(rBtnLinje.Checked == true)
+            //{
+            //    panel.currentShape = "line";
+            //}
+            //if (rBtnRektangel.Checked == true)
+            //{
+            //    panel.currentShape = "rectangle";
+            //}
+            //if (rBtnCirkel.Checked == true)
+            //{
+            //    panel.currentShape = "circle";
+            //}
         }
         private void Cirkel_CheckedChanged(object sender, EventArgs e)
         {

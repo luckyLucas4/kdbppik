@@ -15,15 +15,20 @@ namespace Bästa_Paint_programmet
         private Point currentPos;
         private bool drawing;
         public Bitmap bitmap;
-        private List<Rectangle> rectangles = new List<Rectangle>();
-        private List<Rectangle> ellipses = new List<Rectangle>();
-        private DrawingPen pen = new DrawingPen();
+        private List<Shape> shapes = new List<Shape>();
+        //private List<Rectangle> rectangles = new List<Rectangle>();
+        //private List<Rectangle> ellipses = new List<Rectangle>();
+        private FreehandTool pen = new FreehandTool();
+        private bool penActive;
+        //public string currentShape;
+        public Shape currentShape;
+        public Pen currentPen;
 
-        public string currentShape;
-
-        public DrawingPanel(string shape, Point position, Size size)
+        public DrawingPanel(Pen startingPen,  Point position, Size size)
         {
-            currentShape = shape;
+            penActive = true;
+            currentShape = new RectangleShape(startingPen, new Rectangle());
+            currentPen = startingPen;
             BackColor = Color.White;
             this.Location = position;
             this.Size = size;
@@ -48,7 +53,7 @@ namespace Bästa_Paint_programmet
             currentPos = startPos = e.Location;
             drawing = true;
 
-            if(currentShape == "pen")
+            if(penActive)
             {
                 pen.draw = true;
 
@@ -65,13 +70,13 @@ namespace Bästa_Paint_programmet
                 this.Invalidate();
             }
 
-            if(currentShape == "pen")
+            if(penActive)
             {
                 if (pen.draw)
                 {
                     Graphics graphics = Graphics.FromImage(bitmap);
 
-                    Pen paintingPen = new Pen(Color.Black, 10);
+                    Pen paintingPen = currentPen;
 
                     paintingPen.EndCap = LineCap.Round;
                     paintingPen.StartCap = LineCap.Round;
@@ -88,20 +93,33 @@ namespace Bästa_Paint_programmet
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            switch (currentShape)
-            {
-                case "rectangle":
-                    AddRectangle(e);
-                    break;
+            drawing = false;
+            currentPos = e.Location;
+            var rc = GetRectangle();
 
-                case "circle":
-                    AddCircle(e);
-                    break;
+            if (penActive)
+                pen.draw = false;
 
-                case "pen":
-                    pen.draw = false;
-                    break;
-            }
+            else if (currentShape is RectangleShape)
+                AddRectangle(e);
+
+            else if (currentShape is CircleShape)
+                AddCircle(e);
+
+            //switch (currentShape)
+            //{
+            //    case "rectangle":
+            //        AddRectangle(e);
+            //        break;
+
+            //    case "circle":
+            //        AddCircle(e);
+            //        break;
+
+            //    case "pen":
+            //        pen.draw = false;
+            //        break;
+            //}
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -113,13 +131,17 @@ namespace Bästa_Paint_programmet
         {
             if (drawing)
             {
+                //Graphics graphics = Graphics.FromImage(bitmap);
+
+                //graphics.DrawRectangle()
+
                 drawing = false;
                 currentPos = e.Location;
                 var rc = GetRectangle();
 
                 if (rc.Width > 0 & rc.Height > 0)
                 {
-                    rectangles.Add(rc);
+                    shapes.Add(new RectangleShape(currentPen, rc));
                 }
 
                 this.Invalidate(); // Rita om fönstret
@@ -136,7 +158,7 @@ namespace Bästa_Paint_programmet
 
                 if (rc.Width > 0 & rc.Height > 0)
                 {
-                    ellipses.Add(rc);
+                    shapes.Add(new CircleShape(currentPen, rc));
                 }
 
                 this.Invalidate(); // Rita om fönstret
@@ -148,32 +170,42 @@ namespace Bästa_Paint_programmet
 
             e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
 
-            if (rectangles.Count > 0)
-            {
-                e.Graphics.DrawRectangles(Pens.Black, rectangles.ToArray());
-            }
+            //if (rectangles.Count > 0)
+            //{
+            //    e.Graphics.DrawRectangles(Pens.Black, rectangles.ToArray());
+            //}
 
-            if (ellipses.Count > 0)
+            if (shapes.Count > 0)
             {
-                foreach (Rectangle r in ellipses)
+                foreach (Shape s in shapes)
                 {
-                    e.Graphics.DrawEllipse(Pens.Black, r);
+                    if(s is RectangleShape)
+                        e.Graphics.DrawRectangle(s.pen, s.rect);
+
+                    else if (s is CircleShape)
+                         e.Graphics.DrawEllipse(Pens.Black, s.rect);
                 }
             }
 
-            if (drawing)
+            if (drawing && penActive == false)
             {
-                switch (currentShape)
-                {
-                    case "rectangle":
-                        e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
-                        break;
+                if(currentShape is RectangleShape)
+                    e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
 
-                    case "circle":
-                        e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
-                        break;
+                else if(currentShape is CircleShape)
+                    e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
 
-                }  
+                //switch (currentShape)
+                //{
+                //    case "rectangle":
+                //        e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
+                //        break;
+
+                //    case "circle":
+                //        e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
+                //        break;
+
+                //}  
             }   
         }
     }

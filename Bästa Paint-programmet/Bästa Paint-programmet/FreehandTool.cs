@@ -9,12 +9,12 @@ using System.Drawing.Drawing2D;
 
 namespace Bästa_Paint_programmet
 {
-    class DrawingPen
+    class FreehandTool
     {
         public Point position;
         public bool draw;
 
-        public DrawingPen()
+        public FreehandTool()
         {
             position = new Point(-1, -1);
             draw = false;
