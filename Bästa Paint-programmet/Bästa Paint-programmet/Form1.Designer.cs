@@ -30,13 +30,13 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnColor = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.rBtnPenna = new System.Windows.Forms.RadioButton();
             this.rBtnLinje = new System.Windows.Forms.RadioButton();
             this.rBtnRektangel = new System.Windows.Forms.RadioButton();
             this.rBtnCirkel = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnColor);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(13, 58);
             this.groupBox1.Name = "groupBox1";
@@ -61,6 +61,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Egenskaper";
+            // 
+            // btnColor
+            // 
+            this.btnColor.Location = new System.Drawing.Point(7, 68);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(121, 23);
+            this.btnColor.TabIndex = 6;
+            this.btnColor.UseVisualStyleBackColor = true;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // comboBox1
             // 
@@ -114,15 +123,6 @@
             this.rBtnCirkel.UseVisualStyleBackColor = true;
             this.rBtnCirkel.CheckedChanged += new System.EventHandler(this.Cirkel_CheckedChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
-            this.button1.TabIndex = 6;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -152,7 +152,7 @@
         private System.Windows.Forms.RadioButton rBtnCirkel;
         private System.Windows.Forms.RadioButton rBtnRektangel;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnColor;
     }
 }
 
