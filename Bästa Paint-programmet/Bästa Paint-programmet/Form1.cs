@@ -14,7 +14,7 @@ namespace Bästa_Paint_programmet
     public partial class Form1 : Form
     {
         bool draw = false;
-
+        public Color color;     //väljer färg till currentPen
         DrawingPanel panel;
 
         int pX = -1;
@@ -111,6 +111,16 @@ namespace Bästa_Paint_programmet
         private void rBtnPenna_CheckedChanged(object sender, EventArgs e)
         {
             ToolCheck();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                color = colorDialog1.Color;
+            }
+            button1.BackColor = color;
+            panel.currentPen.Color = color;     //Nödlösning tror jag
         }
     }
 }
