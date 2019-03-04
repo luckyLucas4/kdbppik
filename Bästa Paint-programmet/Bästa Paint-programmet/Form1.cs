@@ -113,13 +113,13 @@ namespace Bästa_Paint_programmet
             ToolCheck();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnColor_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 color = colorDialog1.Color;
             }
-            button1.BackColor = color;
+            btnColor.BackColor = color;
             panel.currentPen.Color = color;     //Nödlösning tror jag
         }
     }
