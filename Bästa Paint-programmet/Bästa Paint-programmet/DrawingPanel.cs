@@ -179,22 +179,28 @@ namespace Bästa_Paint_programmet
             {
                 foreach (Shape s in shapes)
                 {
-                    if(s is RectangleShape)
+                    if (s is RectangleShape)
                         e.Graphics.DrawRectangle(s.pen, s.rect);
 
                     else if (s is CircleShape)
-                         e.Graphics.DrawEllipse(Pens.Black, s.rect);
+                        e.Graphics.DrawEllipse(Pens.Black, s.rect);
+                    else if (s is LineShape)
+                        e.Graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
                 }
             }
 
             if (drawing && penActive == false)
             {
-                if(currentShape is RectangleShape)
+                if (currentShape is RectangleShape)
                     e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
 
-                else if(currentShape is CircleShape)
+                else if (currentShape is CircleShape)
                     e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
 
+                else if (currentShape is LineShape)
+                {
+                    e.Graphics.DrawLine(Pens.Red, currentShape.startPoint, currentShape.endPoint);
+                }
                 //switch (currentShape)
                 //{
                 //    case "rectangle":

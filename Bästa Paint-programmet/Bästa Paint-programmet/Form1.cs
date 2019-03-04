@@ -76,14 +76,14 @@ namespace Bästa_Paint_programmet
       
         public void ToolCheck()
         {
-            //if(rBtnPenna.Checked == true)
+            //if (rBtnPenna.Checked == true)
             //{
             //    panel.currentShape = "pen";
             //}
-            //if(rBtnLinje.Checked == true)
-            //{
-            //    panel.currentShape = "line";
-            //}
+            if (rBtnLinje.Checked == true)
+            {
+                panel.currentShape = new LineShape(new Pen(Color.Red));
+            }
             //if (rBtnRektangel.Checked == true)
             //{
             //    panel.currentShape = "rectangle";

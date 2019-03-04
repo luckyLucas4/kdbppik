@@ -11,5 +11,7 @@ namespace Bästa_Paint_programmet
     {
         public Pen pen;
         public Rectangle rect;
+        public Point startPoint;
+        public Point endPoint;
     }
 }

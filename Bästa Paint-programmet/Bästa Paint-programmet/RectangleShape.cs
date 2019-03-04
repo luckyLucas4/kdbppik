@@ -9,9 +9,9 @@ namespace Bästa_Paint_programmet
 {
     class RectangleShape : Shape
     {
-        public RectangleShape(Pen color, Rectangle rect)
+        public RectangleShape(Pen pen, Rectangle rect)
         {
-            this.pen = color;
+            this.pen = pen;
             this.rect = rect;
         }
     }
