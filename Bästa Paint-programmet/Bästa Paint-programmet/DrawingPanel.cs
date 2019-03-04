@@ -16,11 +16,8 @@ namespace Bästa_Paint_programmet
         private bool drawing;
         public Bitmap bitmap;
         private List<Shape> shapes = new List<Shape>();
-        //private List<Rectangle> rectangles = new List<Rectangle>();
-        //private List<Rectangle> ellipses = new List<Rectangle>();
         private FreehandTool pen = new FreehandTool();
         private bool penActive;
-        //public string currentShape;
         public Shape currentShape;
         public Pen currentPen;
 
@@ -75,15 +72,13 @@ namespace Bästa_Paint_programmet
                 if (pen.draw)
                 {
                     Graphics graphics = Graphics.FromImage(bitmap);
-
+                    
                     Pen paintingPen = currentPen;
 
                     paintingPen.EndCap = LineCap.Round;
                     paintingPen.StartCap = LineCap.Round;
 
                     graphics.DrawLine(paintingPen, pen.position.X , pen.position.Y, e.X, e.Y);
-
-                    //this.CreateGraphics().DrawImageUnscaled(bitmap, new Point(0, 0));
                 }
 
                 pen.position.X = e.X;
@@ -105,21 +100,6 @@ namespace Bästa_Paint_programmet
 
             else if (currentShape is CircleShape)
                 AddCircle(e);
-
-            //switch (currentShape)
-            //{
-            //    case "rectangle":
-            //        AddRectangle(e);
-            //        break;
-
-            //    case "circle":
-            //        AddCircle(e);
-            //        break;
-
-            //    case "pen":
-            //        pen.draw = false;
-            //        break;
-            //}
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -131,10 +111,6 @@ namespace Bästa_Paint_programmet
         {
             if (drawing)
             {
-                //Graphics graphics = Graphics.FromImage(bitmap);
-
-                //graphics.DrawRectangle()
-
                 drawing = false;
                 currentPos = e.Location;
                 var rc = GetRectangle();
@@ -167,25 +143,29 @@ namespace Bästa_Paint_programmet
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            Graphics graphics = Graphics.FromImage(bitmap);
 
             e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
-
-            //if (rectangles.Count > 0)
-            //{
-            //    e.Graphics.DrawRectangles(Pens.Black, rectangles.ToArray());
-            //}
 
             if (shapes.Count > 0)
             {
                 foreach (Shape s in shapes)
                 {
                     if (s is RectangleShape)
+                    {
                         e.Graphics.DrawRectangle(s.pen, s.rect);
-
+                        graphics.DrawRectangle(s.pen, s.rect);
+                    }
                     else if (s is CircleShape)
+                    {
                         e.Graphics.DrawEllipse(Pens.Black, s.rect);
+                        graphics.DrawEllipse(Pens.Black, s.rect);
+                    }
                     else if (s is LineShape)
+                    {
                         e.Graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
+                        graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
+                    }
                 }
             }
 
@@ -201,18 +181,12 @@ namespace Bästa_Paint_programmet
                 {
                     e.Graphics.DrawLine(Pens.Red, currentShape.startPoint, currentShape.endPoint);
                 }
-                //switch (currentShape)
-                //{
-                //    case "rectangle":
-                //        e.Graphics.DrawRectangle(Pens.Red, GetRectangle());
-                //        break;
-
-                //    case "circle":
-                //        e.Graphics.DrawEllipse(Pens.Red, GetRectangle());
-                //        break;
-
-                //}  
             }   
         }
+        public void SaveDrawing()
+        {
+            bitmap.Save("c:\\myBitmap.bmp");
+        }
+        
     }
 }
