@@ -15,7 +15,6 @@ namespace Bästa_Paint_programmet
             this.color = Color.Black;
             this.borderWidth = 10;
             this.Rect = new Rectangle(0, 0, 50, 50);
-            this.startPoint = new Point(Rect.X, Rect.Y);
         }
         public LineShape(Color color, float width, Point startPoint, Point endPoint)
         {
