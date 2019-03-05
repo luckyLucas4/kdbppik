@@ -9,9 +9,22 @@ namespace Bästa_Paint_programmet
 {
     abstract class Shape
     {
-        public Pen pen;
-        public Rectangle rect;
+        public Color color;
+        public float borderWidth;
         public Point startPoint;
         public Point endPoint;
+        private Rectangle rect;
+        public Rectangle Rect {
+            get
+            {
+                return this.rect;
+            }
+            set
+            {
+                this.rect = value;
+                this.startPoint = new Point(value.X, value.Y);
+                this.endPoint = new Point(value.X + value.Width, value.Y + value.Height);
+            }
+        }
     }
 }

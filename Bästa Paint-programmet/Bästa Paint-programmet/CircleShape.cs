@@ -9,10 +9,19 @@ namespace Bästa_Paint_programmet
 {
     class CircleShape : Shape
     {
-        public CircleShape(Pen color, Rectangle rect)
+        public CircleShape()
         {
-            this.pen = color;
-            this.rect = rect;
+            this.color = Color.Black;
+            this.borderWidth = 10;
+            this.Rect = new Rectangle(0, 0, 50, 50);
+        }
+        public CircleShape(Color color, float width, Rectangle rect)
+        {
+            this.color = color;
+            this.borderWidth = width;
+            this.Rect = rect;
+            this.startPoint = new Point(rect.X, rect.Y);
+            this.endPoint = new Point(rect.X + rect.Width, rect.Y + rect.Height);
         }
     }
 }

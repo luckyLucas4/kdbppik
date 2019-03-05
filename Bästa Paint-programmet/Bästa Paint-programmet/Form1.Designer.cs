@@ -31,13 +31,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnColor = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.rBtnPenna = new System.Windows.Forms.RadioButton();
             this.rBtnLinje = new System.Windows.Forms.RadioButton();
             this.rBtnRektangel = new System.Windows.Forms.RadioButton();
             this.rBtnCirkel = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.numWidth = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -53,8 +54,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numWidth);
             this.groupBox1.Controls.Add(this.btnColor);
-            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(13, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(202, 134);
@@ -64,28 +65,23 @@
             // 
             // btnColor
             // 
-            this.btnColor.Location = new System.Drawing.Point(7, 68);
+            this.btnColor.BackColor = System.Drawing.Color.Green;
+            this.btnColor.Location = new System.Drawing.Point(46, 76);
             this.btnColor.Name = "btnColor";
-            this.btnColor.Size = new System.Drawing.Size(121, 23);
+            this.btnColor.Size = new System.Drawing.Size(93, 33);
             this.btnColor.TabIndex = 6;
-            this.btnColor.UseVisualStyleBackColor = true;
+            this.btnColor.UseVisualStyleBackColor = false;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(7, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 4;
             // 
             // rBtnPenna
             // 
             this.rBtnPenna.AutoSize = true;
+            this.rBtnPenna.Checked = true;
             this.rBtnPenna.Location = new System.Drawing.Point(60, 243);
             this.rBtnPenna.Name = "rBtnPenna";
             this.rBtnPenna.Size = new System.Drawing.Size(70, 21);
             this.rBtnPenna.TabIndex = 0;
+            this.rBtnPenna.TabStop = true;
             this.rBtnPenna.Text = "Penna";
             this.rBtnPenna.UseVisualStyleBackColor = true;
             this.rBtnPenna.CheckedChanged += new System.EventHandler(this.rBtnPenna_CheckedChanged);
@@ -123,6 +119,21 @@
             this.rBtnCirkel.UseVisualStyleBackColor = true;
             this.rBtnCirkel.CheckedChanged += new System.EventHandler(this.Cirkel_CheckedChanged);
             // 
+            // numWidth
+            // 
+            this.numWidth.DecimalPlaces = 1;
+            this.numWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numWidth.Location = new System.Drawing.Point(46, 40);
+            this.numWidth.Name = "numWidth";
+            this.numWidth.Size = new System.Drawing.Size(93, 30);
+            this.numWidth.TabIndex = 7;
+            this.numWidth.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numWidth.ValueChanged += new System.EventHandler(this.numWidth_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -137,6 +148,7 @@
             this.Name = "Form1";
             this.Text = "Bästa Paint Programmet";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,13 +158,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton rBtnPenna;
         private System.Windows.Forms.RadioButton rBtnLinje;
         private System.Windows.Forms.RadioButton rBtnCirkel;
         private System.Windows.Forms.RadioButton rBtnRektangel;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.NumericUpDown numWidth;
     }
 }
 

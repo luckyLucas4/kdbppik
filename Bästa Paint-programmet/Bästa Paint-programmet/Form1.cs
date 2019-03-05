@@ -76,22 +76,26 @@ namespace Bästa_Paint_programmet
       
         public void ToolCheck()
         {
-            //if (rBtnPenna.Checked == true)
-            //{
-            //    panel.currentShape = "pen";
-            //}
+            if (rBtnPenna.Checked == true)
+            {
+                panel.penActive = true;
+            }
+            else
+            {
+                panel.penActive = false;
+            }
             if (rBtnLinje.Checked == true)
             {
-                panel.currentShape = new LineShape(new Pen(Color.Red));
+                panel.currentShape = new LineShape();
             }
-            //if (rBtnRektangel.Checked == true)
-            //{
-            //    panel.currentShape = "rectangle";
-            //}
-            //if (rBtnCirkel.Checked == true)
-            //{
-            //    panel.currentShape = "circle";
-            //}
+            if (rBtnRektangel.Checked == true)
+            {
+                panel.currentShape = new RectangleShape();
+            }
+            if (rBtnCirkel.Checked == true)
+            {
+                panel.currentShape = new CircleShape();
+            }
         }
         private void Cirkel_CheckedChanged(object sender, EventArgs e)
         {
@@ -121,6 +125,11 @@ namespace Bästa_Paint_programmet
             }
             btnColor.BackColor = color;
             panel.currentPen.Color = color;     //Nödlösning tror jag
+        }
+
+        private void numWidth_ValueChanged(object sender, EventArgs e)
+        {
+            panel.currentPen.Width = (float)numWidth.Value;
         }
     }
 }

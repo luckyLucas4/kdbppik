@@ -11,20 +11,22 @@ namespace Bästa_Paint_programmet
 {
     class DrawingPanel : Panel
     {
+        public bool penActive;
+        public Shape currentShape;
+        public Pen currentPen;
+        public Bitmap bitmap;
+
         private Point startPos;
         private Point currentPos;
         private bool drawing;
-        public Bitmap bitmap;
         private List<Shape> shapes = new List<Shape>();
         private FreehandTool pen = new FreehandTool();
-        private bool penActive;
-        public Shape currentShape;
-        public Pen currentPen;
+        
 
         public DrawingPanel(Pen startingPen,  Point position, Size size)
         {
             penActive = true;
-            currentShape = new RectangleShape(startingPen, new Rectangle());
+            currentShape = new RectangleShape(startingPen.Color, startingPen.Width, new Rectangle());
             currentPen = startingPen;
             BackColor = Color.White;
             this.Location = position;
@@ -104,41 +106,35 @@ namespace Bästa_Paint_programmet
 
         protected override void OnMouseLeave(EventArgs e)
         {
-            drawing = false;
+            //drawing = false;
         }
 
         private void AddRectangle(MouseEventArgs e)
         {
-            if (drawing)
+            drawing = false;
+            currentPos = e.Location;
+            var rc = GetRectangle();
+
+            if (rc.Width > 0 & rc.Height > 0)
             {
-                drawing = false;
-                currentPos = e.Location;
-                var rc = GetRectangle();
-
-                if (rc.Width > 0 & rc.Height > 0)
-                {
-                    shapes.Add(new RectangleShape(currentPen, rc));
-                }
-
-                this.Invalidate(); // Rita om fönstret
+                shapes.Add(new RectangleShape(currentPen.Color, currentPen.Width, rc));
             }
+
+            this.Invalidate(); // Rita om fönstret
         }
 
         private void AddCircle(MouseEventArgs e)
         {
-            if (drawing)
+            drawing = false;
+            currentPos = e.Location;
+            var rc = GetRectangle();
+
+            if (rc.Width > 0 & rc.Height > 0)
             {
-                drawing = false;
-                currentPos = e.Location;
-                var rc = GetRectangle();
-
-                if (rc.Width > 0 & rc.Height > 0)
-                {
-                    shapes.Add(new CircleShape(currentPen, rc));
-                }
-
-                this.Invalidate(); // Rita om fönstret
+                shapes.Add(new CircleShape(currentPen.Color, currentPen.Width, rc));
             }
+
+            this.Invalidate(); // Rita om fönstret
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -153,18 +149,19 @@ namespace Bästa_Paint_programmet
                 {
                     if (s is RectangleShape)
                     {
-                        e.Graphics.DrawRectangle(s.pen, s.rect);
-                        graphics.DrawRectangle(s.pen, s.rect);
+                        e.Graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
+                        graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
                     }
                     else if (s is CircleShape)
                     {
-                        e.Graphics.DrawEllipse(Pens.Black, s.rect);
-                        graphics.DrawEllipse(Pens.Black, s.rect);
+                        e.Graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
+                        graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
                     }
                     else if (s is LineShape)
                     {
-                        e.Graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
-                        graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
+                        //e.Graphics.DrawLine(s.color, s.startPoint, s.endPoint);
+                        //e.Graphics.DrawLine(new Pen(s.color, 10), s.rect);
+                        //graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
                     }
                 }
             }
