@@ -17,13 +17,12 @@ namespace Bästa_Paint_programmet
             this.Rect = new Rectangle(0, 0, 50, 50);
             this.startPoint = new Point(Rect.X, Rect.Y);
         }
-        public LineShape(Color color, float width, Rectangle rect)
+        public LineShape(Color color, float width, Point startPoint, Point endPoint)
         {
             this.color = color;
             this.borderWidth = width;
-            this.Rect = rect;
-            this.startPoint = new Point(rect.X, rect.Y);
-            this.endPoint = new Point(rect.X + rect.Width, rect.Y + rect.Height);
+            this.startPoint = startPoint;
+            this.endPoint = endPoint;
         }
     }
 }

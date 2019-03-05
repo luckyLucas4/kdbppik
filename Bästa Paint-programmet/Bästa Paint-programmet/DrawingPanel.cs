@@ -92,16 +92,18 @@ namespace Bästa_Paint_programmet
         {
             drawing = false;
             currentPos = e.Location;
-            var rc = GetRectangle();
 
             if (penActive)
                 pen.draw = false;
 
+            else if (currentShape is LineShape)
+                AddLine();
+
             else if (currentShape is RectangleShape)
-                AddRectangle(e);
+                AddRectangle();
 
             else if (currentShape is CircleShape)
-                AddCircle(e);
+                AddCircle();
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -109,10 +111,19 @@ namespace Bästa_Paint_programmet
             //drawing = false;
         }
 
-        private void AddRectangle(MouseEventArgs e)
+        private void AddLine()
         {
-            drawing = false;
-            currentPos = e.Location;
+           
+            if (startPos.X - currentPos.X !=0 || startPos.Y - currentPos.Y !=0)
+            {
+                shapes.Add(new LineShape(currentPen.Color, currentPen.Width, startPos, currentPos));
+                
+            }
+            this.Invalidate();
+        }
+
+        private void AddRectangle()
+        {
             var rc = GetRectangle();
 
             if (rc.Width > 0 & rc.Height > 0)
@@ -123,10 +134,8 @@ namespace Bästa_Paint_programmet
             this.Invalidate(); // Rita om fönstret
         }
 
-        private void AddCircle(MouseEventArgs e)
+        private void AddCircle()
         {
-            drawing = false;
-            currentPos = e.Location;
             var rc = GetRectangle();
 
             if (rc.Width > 0 & rc.Height > 0)
@@ -159,9 +168,7 @@ namespace Bästa_Paint_programmet
                     }
                     else if (s is LineShape)
                     {
-                        //e.Graphics.DrawLine(s.color, s.startPoint, s.endPoint);
-                        //e.Graphics.DrawLine(new Pen(s.color, 10), s.rect);
-                        //graphics.DrawLine(s.pen, s.startPoint, s.endPoint);
+                        e.Graphics.DrawLine(new Pen(s.color, s.borderWidth), s.startPoint, s.endPoint);
                     }
                 }
             }
@@ -176,7 +183,7 @@ namespace Bästa_Paint_programmet
 
                 else if (currentShape is LineShape)
                 {
-                    e.Graphics.DrawLine(Pens.Red, currentShape.startPoint, currentShape.endPoint);
+                    e.Graphics.DrawLine(Pens.Red, startPos, currentPos);
                 }
             }   
         }
