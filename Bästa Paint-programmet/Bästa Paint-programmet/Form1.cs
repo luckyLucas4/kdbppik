@@ -131,5 +131,11 @@ namespace Bästa_Paint_programmet
         {
             panel.currentPen.Width = (float)numWidth.Value;
         }
+
+        private void btnRemoveShape_Click(object sender, EventArgs e)
+        {
+            panel.removeChange();
+
+        }
     }
 }

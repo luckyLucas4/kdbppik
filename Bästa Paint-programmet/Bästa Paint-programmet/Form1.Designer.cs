@@ -30,13 +30,14 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numWidth = new System.Windows.Forms.NumericUpDown();
             this.btnColor = new System.Windows.Forms.Button();
             this.rBtnPenna = new System.Windows.Forms.RadioButton();
             this.rBtnLinje = new System.Windows.Forms.RadioButton();
             this.rBtnRektangel = new System.Windows.Forms.RadioButton();
             this.rBtnCirkel = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.numWidth = new System.Windows.Forms.NumericUpDown();
+            this.btnRemoveShape = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +63,21 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Egenskaper";
+            // 
+            // numWidth
+            // 
+            this.numWidth.DecimalPlaces = 1;
+            this.numWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numWidth.Location = new System.Drawing.Point(46, 40);
+            this.numWidth.Name = "numWidth";
+            this.numWidth.Size = new System.Drawing.Size(93, 30);
+            this.numWidth.TabIndex = 7;
+            this.numWidth.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numWidth.ValueChanged += new System.EventHandler(this.numWidth_ValueChanged);
             // 
             // btnColor
             // 
@@ -119,26 +135,22 @@
             this.rBtnCirkel.UseVisualStyleBackColor = true;
             this.rBtnCirkel.CheckedChanged += new System.EventHandler(this.Cirkel_CheckedChanged);
             // 
-            // numWidth
+            // btnRemoveShape
             // 
-            this.numWidth.DecimalPlaces = 1;
-            this.numWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numWidth.Location = new System.Drawing.Point(46, 40);
-            this.numWidth.Name = "numWidth";
-            this.numWidth.Size = new System.Drawing.Size(93, 30);
-            this.numWidth.TabIndex = 7;
-            this.numWidth.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numWidth.ValueChanged += new System.EventHandler(this.numWidth_ValueChanged);
+            this.btnRemoveShape.Location = new System.Drawing.Point(59, 444);
+            this.btnRemoveShape.Name = "btnRemoveShape";
+            this.btnRemoveShape.Size = new System.Drawing.Size(45, 23);
+            this.btnRemoveShape.TabIndex = 4;
+            this.btnRemoveShape.Text = "<-- ";
+            this.btnRemoveShape.UseVisualStyleBackColor = true;
+            this.btnRemoveShape.Click += new System.EventHandler(this.btnRemoveShape_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 531);
+            this.Controls.Add(this.btnRemoveShape);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rBtnCirkel);
             this.Controls.Add(this.panel1);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btnColor;
         private System.Windows.Forms.NumericUpDown numWidth;
+        private System.Windows.Forms.Button btnRemoveShape;
     }
 }
 

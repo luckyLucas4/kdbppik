@@ -21,9 +21,9 @@ namespace Bästa_Paint_programmet
         private bool drawing;
         private List<Shape> shapes = new List<Shape>();
         private FreehandTool pen = new FreehandTool();
-        
 
-        public DrawingPanel(Pen startingPen,  Point position, Size size)
+
+        public DrawingPanel(Pen startingPen, Point position, Size size)
         {
             penActive = true;
             currentShape = new RectangleShape(startingPen.Color, startingPen.Width, new Rectangle());
@@ -52,7 +52,7 @@ namespace Bästa_Paint_programmet
             currentPos = startPos = e.Location;
             drawing = true;
 
-            if(penActive)
+            if (penActive)
             {
                 pen.draw = true;
 
@@ -69,18 +69,18 @@ namespace Bästa_Paint_programmet
                 this.Invalidate();
             }
 
-            if(penActive)
+            if (penActive)
             {
                 if (pen.draw)
                 {
                     Graphics graphics = Graphics.FromImage(bitmap);
-                    
+
                     Pen paintingPen = currentPen;
 
                     paintingPen.EndCap = LineCap.Round;
                     paintingPen.StartCap = LineCap.Round;
 
-                    graphics.DrawLine(paintingPen, pen.position.X , pen.position.Y, e.X, e.Y);
+                    graphics.DrawLine(paintingPen, pen.position.X, pen.position.Y, e.X, e.Y);
                 }
 
                 pen.position.X = e.X;
@@ -159,17 +159,18 @@ namespace Bästa_Paint_programmet
                     if (s is RectangleShape)
                     {
                         e.Graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
-                        graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
+                        //graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
                     }
                     else if (s is CircleShape)
                     {
                         e.Graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
-                        graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
+                        //graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
                     }
                     else if (s is LineShape)
                     {
                         e.Graphics.DrawLine(new Pen(s.color, s.borderWidth), s.startPoint, s.endPoint);
                     }
+                    
                 }
             }
 
@@ -185,12 +186,19 @@ namespace Bästa_Paint_programmet
                 {
                     e.Graphics.DrawLine(Pens.Red, startPos, currentPos);
                 }
-            }   
+            }
         }
         public void SaveDrawing()
         {
             bitmap.Save("c:\\myBitmap.bmp");
         }
-        
+        public void removeChange()
+        {
+            if (shapes.Count >= 1)
+            {
+                shapes.RemoveAt(shapes.Count - 1);
+                this.Invalidate();
+            }
+        }
     }
 }
