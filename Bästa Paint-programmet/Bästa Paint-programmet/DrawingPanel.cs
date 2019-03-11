@@ -19,7 +19,6 @@ namespace Bästa_Paint_programmet
         private Point startPos;
         private Point currentPos;
         private bool drawing;
-        //private List<Shape> shapes = new List<Shape>();
         private List<Bitmap> bitmapHistory = new List<Bitmap>();
         private FreehandTool pen = new FreehandTool();
 
@@ -111,17 +110,11 @@ namespace Bästa_Paint_programmet
             bitmapHistory.Add(new Bitmap(bitmap));
         }
 
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            //drawing = false;
-        }
-
         private void AddLine(Graphics g)
         {
             
             if (startPos.X - currentPos.X !=0 || startPos.Y - currentPos.Y !=0)
             {
-                //shapes.Add(new LineShape(currentPen.Color, currentPen.Width, startPos, currentPos));
                 g.DrawLine(currentPen, startPos, currentPos);
             }
             this.Invalidate(); // Rita om fönstret
@@ -133,7 +126,6 @@ namespace Bästa_Paint_programmet
 
             if (rc.Width > 0 & rc.Height > 0)
             {
-                //shapes.Add(new RectangleShape(currentPen.Color, currentPen.Width, rc));
                 g.DrawRectangle(currentPen, rc);
             }
 
@@ -146,7 +138,6 @@ namespace Bästa_Paint_programmet
 
             if (rc.Width > 0 & rc.Height > 0)
             {
-                //shapes.Add(new CircleShape(currentPen.Color, currentPen.Width, rc));
                 g.DrawEllipse(currentPen, rc);
             }
 
@@ -158,28 +149,6 @@ namespace Bästa_Paint_programmet
             Graphics graphics = Graphics.FromImage(bitmap);
 
             e.Graphics.DrawImageUnscaled(bitmap, new Point(0, 0));
-
-            //if (shapes.Count > 0)
-            //{
-            //    foreach (Shape s in shapes)
-            //    {
-            //        if (s is RectangleShape)
-            //        {
-            //            e.Graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
-            //            //graphics.DrawRectangle(new Pen(s.color, s.borderWidth), s.Rect);
-            //        }
-            //        else if (s is CircleShape)
-            //        {
-            //            e.Graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
-            //            //graphics.DrawEllipse(new Pen(s.color, s.borderWidth), s.Rect);
-            //        }
-            //        else if (s is LineShape)
-            //        {
-            //            e.Graphics.DrawLine(new Pen(s.color, s.borderWidth), s.startPoint, s.endPoint);
-            //        }
-                    
-            //    }
-            //}
 
             if (drawing && penActive == false)
             {
@@ -202,12 +171,6 @@ namespace Bästa_Paint_programmet
 
         public void removeChange()
         {
-            //if (shapes.Count >= 1)
-            //{
-            //    shapes.RemoveAt(shapes.Count - 1);
-            //    this.Invalidate();
-            //}
-
             if(bitmapHistory.Count > 1)
             {
                 bitmapHistory.RemoveAt(bitmapHistory.Count - 1);

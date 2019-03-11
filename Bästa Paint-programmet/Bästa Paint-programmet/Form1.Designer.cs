@@ -37,7 +37,7 @@
             this.rBtnRektangel = new System.Windows.Forms.RadioButton();
             this.rBtnCirkel = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnRemoveShape = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             this.SuspendLayout();
@@ -48,10 +48,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(568, 480);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
             // groupBox1
             // 
@@ -133,24 +129,24 @@
             this.rBtnCirkel.TabIndex = 3;
             this.rBtnCirkel.Text = "Cirkel";
             this.rBtnCirkel.UseVisualStyleBackColor = true;
-            this.rBtnCirkel.CheckedChanged += new System.EventHandler(this.Cirkel_CheckedChanged);
+            this.rBtnCirkel.CheckedChanged += new System.EventHandler(this.rbtnCirkel_CheckedChanged);
             // 
-            // btnRemoveShape
+            // btnUndo
             // 
-            this.btnRemoveShape.Location = new System.Drawing.Point(59, 444);
-            this.btnRemoveShape.Name = "btnRemoveShape";
-            this.btnRemoveShape.Size = new System.Drawing.Size(45, 23);
-            this.btnRemoveShape.TabIndex = 4;
-            this.btnRemoveShape.Text = "<-- ";
-            this.btnRemoveShape.UseVisualStyleBackColor = true;
-            this.btnRemoveShape.Click += new System.EventHandler(this.btnRemoveShape_Click);
+            this.btnUndo.Location = new System.Drawing.Point(59, 444);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(45, 23);
+            this.btnUndo.TabIndex = 4;
+            this.btnUndo.Text = "<-- ";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 531);
-            this.Controls.Add(this.btnRemoveShape);
+            this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rBtnCirkel);
             this.Controls.Add(this.panel1);
@@ -177,7 +173,7 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btnColor;
         private System.Windows.Forms.NumericUpDown numWidth;
-        private System.Windows.Forms.Button btnRemoveShape;
+        private System.Windows.Forms.Button btnUndo;
     }
 }
 
