@@ -12,6 +12,7 @@ namespace Bästa_Paint_programmet
     class DrawingPanel : Panel
     {
         public bool penActive;
+        public bool fillShape;
         public Shape currentShape;
         public Pen currentPen;
         public Bitmap bitmap;
@@ -20,7 +21,7 @@ namespace Bästa_Paint_programmet
         private Point currentPos;
         private bool drawing;
         private List<Bitmap> bitmapHistory = new List<Bitmap>();
-        private FreehandTool pen = new FreehandTool();
+        private FreehandTool freehand = new FreehandTool();
 
 
         public DrawingPanel(Pen startingPen, Point position, Size size)
@@ -55,10 +56,10 @@ namespace Bästa_Paint_programmet
 
             if (penActive)
             {
-                pen.draw = true;
+                freehand.draw = true;
 
-                pen.position.X = e.X;
-                pen.position.Y = e.Y;
+                freehand.position.X = e.X;
+                freehand.position.Y = e.Y;
             }
         }
 
@@ -72,7 +73,7 @@ namespace Bästa_Paint_programmet
 
             if (penActive)
             {
-                if (pen.draw)
+                if (freehand.draw)
                 {
                     Graphics graphics = Graphics.FromImage(bitmap);
 
@@ -81,11 +82,11 @@ namespace Bästa_Paint_programmet
                     paintingPen.EndCap = LineCap.Round;
                     paintingPen.StartCap = LineCap.Round;
 
-                    graphics.DrawLine(paintingPen, pen.position.X, pen.position.Y, e.X, e.Y);
+                    graphics.DrawLine(paintingPen, freehand.position.X, freehand.position.Y, e.X, e.Y);
                 }
 
-                pen.position.X = e.X;
-                pen.position.Y = e.Y;
+                freehand.position.X = e.X;
+                freehand.position.Y = e.Y;
             }
         }
 
@@ -96,7 +97,7 @@ namespace Bästa_Paint_programmet
             Graphics g = Graphics.FromImage(bitmap);
 
             if (penActive)
-                pen.draw = false;
+                freehand.draw = false;
 
             else if (currentShape is LineShape)
                 AddLine(g);
@@ -126,7 +127,10 @@ namespace Bästa_Paint_programmet
 
             if (rc.Width > 0 & rc.Height > 0)
             {
-                g.DrawRectangle(currentPen, rc);
+                if (fillShape)
+                    g.FillRectangle(new SolidBrush(currentPen.Color), rc);
+                else
+                    g.DrawRectangle(currentPen, rc);
             }
 
             this.Invalidate(); // Rita om fönstret
@@ -138,7 +142,10 @@ namespace Bästa_Paint_programmet
 
             if (rc.Width > 0 & rc.Height > 0)
             {
-                g.DrawEllipse(currentPen, rc);
+                if (fillShape)
+                    g.FillEllipse(new SolidBrush(currentPen.Color), rc);
+                else
+                    g.DrawEllipse(currentPen, rc);
             }
 
             this.Invalidate(); // Rita om fönstret

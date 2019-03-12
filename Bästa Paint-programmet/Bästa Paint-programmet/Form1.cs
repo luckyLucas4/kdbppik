@@ -90,5 +90,10 @@ namespace Bästa_Paint_programmet
             panel.removeChange();
 
         }
+
+        private void chbFill_CheckedChanged(object sender, EventArgs e)
+        {
+            panel.fillShape = chbFill.Checked;
+        }
     }
 }

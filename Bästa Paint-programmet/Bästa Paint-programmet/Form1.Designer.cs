@@ -38,6 +38,7 @@
             this.rBtnCirkel = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnUndo = new System.Windows.Forms.Button();
+            this.chbFill = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.groupBox1.Controls.Add(this.numWidth);
             this.groupBox1.Controls.Add(this.btnColor);
-            this.groupBox1.Location = new System.Drawing.Point(13, 58);
+            this.groupBox1.Location = new System.Drawing.Point(12, 37);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(202, 134);
             this.groupBox1.TabIndex = 1;
@@ -89,7 +90,7 @@
             // 
             this.rBtnPenna.AutoSize = true;
             this.rBtnPenna.Checked = true;
-            this.rBtnPenna.Location = new System.Drawing.Point(60, 243);
+            this.rBtnPenna.Location = new System.Drawing.Point(58, 193);
             this.rBtnPenna.Name = "rBtnPenna";
             this.rBtnPenna.Size = new System.Drawing.Size(70, 21);
             this.rBtnPenna.TabIndex = 0;
@@ -101,7 +102,7 @@
             // rBtnLinje
             // 
             this.rBtnLinje.AutoSize = true;
-            this.rBtnLinje.Location = new System.Drawing.Point(59, 296);
+            this.rBtnLinje.Location = new System.Drawing.Point(57, 241);
             this.rBtnLinje.Name = "rBtnLinje";
             this.rBtnLinje.Size = new System.Drawing.Size(59, 21);
             this.rBtnLinje.TabIndex = 1;
@@ -112,7 +113,7 @@
             // rBtnRektangel
             // 
             this.rBtnRektangel.AutoSize = true;
-            this.rBtnRektangel.Location = new System.Drawing.Point(59, 345);
+            this.rBtnRektangel.Location = new System.Drawing.Point(57, 290);
             this.rBtnRektangel.Name = "rBtnRektangel";
             this.rBtnRektangel.Size = new System.Drawing.Size(93, 21);
             this.rBtnRektangel.TabIndex = 2;
@@ -123,7 +124,7 @@
             // rBtnCirkel
             // 
             this.rBtnCirkel.AutoSize = true;
-            this.rBtnCirkel.Location = new System.Drawing.Point(60, 391);
+            this.rBtnCirkel.Location = new System.Drawing.Point(58, 336);
             this.rBtnCirkel.Name = "rBtnCirkel";
             this.rBtnCirkel.Size = new System.Drawing.Size(64, 21);
             this.rBtnCirkel.TabIndex = 3;
@@ -133,7 +134,7 @@
             // 
             // btnUndo
             // 
-            this.btnUndo.Location = new System.Drawing.Point(59, 444);
+            this.btnUndo.Location = new System.Drawing.Point(57, 470);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(45, 23);
             this.btnUndo.TabIndex = 4;
@@ -141,11 +142,23 @@
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
+            // chbFill
+            // 
+            this.chbFill.AutoSize = true;
+            this.chbFill.Location = new System.Drawing.Point(58, 399);
+            this.chbFill.Name = "chbFill";
+            this.chbFill.Size = new System.Drawing.Size(106, 21);
+            this.chbFill.TabIndex = 5;
+            this.chbFill.Text = "Fyll i formen";
+            this.chbFill.UseVisualStyleBackColor = true;
+            this.chbFill.CheckedChanged += new System.EventHandler(this.chbFill_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 531);
+            this.Controls.Add(this.chbFill);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rBtnCirkel);
@@ -174,6 +187,7 @@
         private System.Windows.Forms.Button btnColor;
         private System.Windows.Forms.NumericUpDown numWidth;
         private System.Windows.Forms.Button btnUndo;
+        private System.Windows.Forms.CheckBox chbFill;
     }
 }
 
