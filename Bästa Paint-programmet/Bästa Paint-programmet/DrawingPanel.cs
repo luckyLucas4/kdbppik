@@ -21,6 +21,7 @@ namespace Bästa_Paint_programmet
         private Point currentPos;
         private bool drawing;
         private List<Bitmap> bitmapHistory = new List<Bitmap>();
+        private List<Bitmap> undoHistory = new List<Bitmap>();
         private FreehandTool freehand = new FreehandTool();
 
 
@@ -176,11 +177,23 @@ namespace Bästa_Paint_programmet
             bitmap.Save("c:\\myBitmap.bmp");
         }
 
-        public void removeChange()
+        public void UndoChange()
         {
             if(bitmapHistory.Count > 1)
             {
+                undoHistory.Add(bitmapHistory[bitmapHistory.Count - 1]);
                 bitmapHistory.RemoveAt(bitmapHistory.Count - 1);
+                bitmap = new Bitmap(bitmapHistory[bitmapHistory.Count - 1]);
+                this.Invalidate();
+            }
+        }
+
+        public void RedoChange()
+        {
+            if(undoHistory.Count > 0)
+            {
+                bitmapHistory.Add(undoHistory[undoHistory.Count - 1]);
+                undoHistory.RemoveAt(undoHistory.Count - 1);
                 bitmap = new Bitmap(bitmapHistory[bitmapHistory.Count - 1]);
                 this.Invalidate();
             }

@@ -85,15 +85,19 @@ namespace Bästa_Paint_programmet
             panel.currentPen.Width = (float)numWidth.Value;
         }
 
-        private void btnUndo_Click(object sender, EventArgs e)
-        {
-            panel.removeChange();
-
-        }
-
         private void chbFill_CheckedChanged(object sender, EventArgs e)
         {
             panel.fillShape = chbFill.Checked;
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            panel.UndoChange();
+        }
+
+        private void btnRedo_Click(object sender, EventArgs e)
+        {
+            panel.RedoChange();
         }
     }
 }

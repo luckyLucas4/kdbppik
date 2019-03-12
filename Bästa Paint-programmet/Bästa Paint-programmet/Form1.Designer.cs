@@ -39,6 +39,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnUndo = new System.Windows.Forms.Button();
             this.chbFill = new System.Windows.Forms.CheckBox();
+            this.btnRedo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             this.SuspendLayout();
@@ -153,12 +154,23 @@
             this.chbFill.UseVisualStyleBackColor = true;
             this.chbFill.CheckedChanged += new System.EventHandler(this.chbFill_CheckedChanged);
             // 
+            // btnRedo
+            // 
+            this.btnRedo.Location = new System.Drawing.Point(119, 470);
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.Size = new System.Drawing.Size(45, 23);
+            this.btnRedo.TabIndex = 4;
+            this.btnRedo.Text = "--> ";
+            this.btnRedo.UseVisualStyleBackColor = true;
+            this.btnRedo.Click += new System.EventHandler(this.btnRedo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 531);
             this.Controls.Add(this.chbFill);
+            this.Controls.Add(this.btnRedo);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rBtnCirkel);
@@ -188,6 +200,7 @@
         private System.Windows.Forms.NumericUpDown numWidth;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.CheckBox chbFill;
+        private System.Windows.Forms.Button btnRedo;
     }
 }
 
